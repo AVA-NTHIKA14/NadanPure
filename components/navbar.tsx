@@ -2,9 +2,19 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, ShoppingBag, Leaf } from "lucide-react"
+import { Menu, X, ShoppingBag, Leaf, User, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { createClient } from "@/lib/supabase/client"
+import type { User as SupabaseUser } from "@supabase/supabase-js"
 
 const navLinks = [
   { name: "Shop", href: "#products" },
@@ -16,6 +26,10 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [user, setUser] = useState<SupabaseUser | null>(null)
+  const [loading, setLoading] = useState(true)
+  const router = useRouter()
+  const supabase = createClient()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +38,35 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser()
+      setUser(user)
+      setLoading(false)
+    }
+    getUser()
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [supabase.auth])
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
+    router.push("/")
+    router.refresh()
+  }
+
+  const getUserInitials = () => {
+    const fullName = user?.user_metadata?.full_name as string | undefined
+    if (fullName) {
+      return fullName.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
+    }
+    return user?.email?.slice(0, 2).toUpperCase() || "U"
+  }
 
   return (
     <motion.header
@@ -71,9 +114,47 @@ export function Navbar() {
                 2
               </span>
             </Button>
-            <Button className="rounded-full bg-primary px-6 text-primary-foreground hover:bg-primary/90">
-              Shop Now
-            </Button>
+            
+            {!loading && (
+              <>
+                {user ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="flex items-center gap-2 rounded-full px-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-medium">
+                          {getUserInitials()}
+                        </div>
+                        <span className="hidden xl:inline text-sm font-medium">
+                          {user.user_metadata?.full_name || user.email?.split("@")[0]}
+                        </span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-56 rounded-2xl">
+                      <div className="px-3 py-2">
+                        <p className="text-sm font-medium">{user.user_metadata?.full_name || "User"}</p>
+                        <p className="text-xs text-muted-foreground">{user.email}</p>
+                      </div>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem asChild>
+                        <Link href="/profile" className="cursor-pointer">
+                          <User className="mr-2 h-4 w-4" />
+                          My Profile
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-destructive">
+                        <LogOut className="mr-2 h-4 w-4" />
+                        Logout
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <Button asChild className="rounded-full bg-primary px-6 text-primary-foreground hover:bg-primary/90">
+                    <Link href="/auth/login">Login</Link>
+                  </Button>
+                )}
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -110,12 +191,64 @@ export function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              <div className="flex items-center gap-3 pt-4">
-                <Button className="flex-1 rounded-full bg-primary text-primary-foreground">
-                  Shop Now
-                </Button>
-                <Button variant="outline" size="icon" className="rounded-full">
+              
+              {!loading && (
+                <>
+                  {user ? (
+                    <>
+                      <div className="border-t border-border pt-4 mt-4">
+                        <div className="flex items-center gap-3 px-3 py-2">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-medium">
+                            {getUserInitials()}
+                          </div>
+                          <div>
+                            <p className="text-sm font-medium">{user.user_metadata?.full_name || "User"}</p>
+                            <p className="text-xs text-muted-foreground">{user.email}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <Link
+                        href="/profile"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-center gap-2 rounded-lg px-3 py-2 text-base font-medium text-foreground hover:bg-secondary"
+                      >
+                        <User className="h-5 w-5" />
+                        My Profile
+                      </Link>
+                      <button
+                        onClick={() => {
+                          handleLogout()
+                          setIsMobileMenuOpen(false)
+                        }}
+                        className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-base font-medium text-destructive hover:bg-secondary"
+                      >
+                        <LogOut className="h-5 w-5" />
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <div className="flex items-center gap-3 pt-4">
+                      <Button asChild className="flex-1 rounded-full bg-primary text-primary-foreground">
+                        <Link href="/auth/login" onClick={() => setIsMobileMenuOpen(false)}>
+                          Login
+                        </Link>
+                      </Button>
+                      <Button asChild variant="outline" className="flex-1 rounded-full">
+                        <Link href="/auth/sign-up" onClick={() => setIsMobileMenuOpen(false)}>
+                          Sign Up
+                        </Link>
+                      </Button>
+                    </div>
+                  )}
+                </>
+              )}
+              
+              <div className="flex items-center gap-3 pt-2">
+                <Button variant="outline" size="icon" className="rounded-full relative">
                   <ShoppingBag className="h-5 w-5" />
+                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs font-bold text-accent-foreground">
+                    2
+                  </span>
                 </Button>
               </div>
             </div>
