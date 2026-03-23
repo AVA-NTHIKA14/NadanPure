@@ -163,8 +163,9 @@ export function HeroSection() {
 
                   <div className="flex items-center justify-between pt-2">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-2xl font-bold text-foreground">₹599</span>
-                      <span className="text-sm text-muted-foreground line-through">₹799</span>
+                      <span className="text-2xl font-bold text-foreground">₹185</span>
+                      <span className="text-xs text-muted-foreground">/500ml</span>
+                      <span className="text-sm text-muted-foreground line-through">₹220</span>
                     </div>
                     
                     <div className="flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1">
