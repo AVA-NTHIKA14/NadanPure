@@ -136,7 +136,7 @@ export function HeroSection() {
                 
                 <div className="relative mb-6 aspect-square w-64 overflow-hidden rounded-2xl bg-secondary sm:w-80">
                   <Image
-                    src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&h=600&fit=crop"
+                    src="/images/coconut-oil.jpg"
                     alt="Organic Virgin Coconut Oil"
                     fill
                     className="object-cover transition-transform duration-500 hover:scale-110"

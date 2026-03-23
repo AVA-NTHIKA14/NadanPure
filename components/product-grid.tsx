@@ -15,7 +15,7 @@ const products = [
     purityScore: 98,
     rating: 4.9,
     reviews: 234,
-    image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500&h=500&fit=crop",
+    image: "/images/coconut-oil.jpg",
     tags: ["Bestseller", "Organic"],
   },
   {
@@ -27,7 +27,7 @@ const products = [
     purityScore: 96,
     rating: 4.8,
     reviews: 189,
-    image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=500&h=500&fit=crop",
+    image: "/images/wild-honey.jpg",
     tags: ["Pure", "Raw"],
   },
   {
@@ -39,7 +39,7 @@ const products = [
     purityScore: 99,
     rating: 4.9,
     reviews: 156,
-    image: "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=500&h=500&fit=crop",
+    image: "/images/black-pepper.jpg",
     tags: ["Premium", "Single Origin"],
   },
   {
@@ -51,7 +51,7 @@ const products = [
     purityScore: 97,
     rating: 4.7,
     reviews: 98,
-    image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=500&h=500&fit=crop",
+    image: "/images/cardamom.jpg",
     tags: ["Fragrant", "Export Quality"],
   },
   {
@@ -63,7 +63,7 @@ const products = [
     purityScore: 95,
     rating: 4.8,
     reviews: 312,
-    image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=500&h=500&fit=crop&hue=40",
+    image: "/images/turmeric.jpg",
     tags: ["High Curcumin", "Lab Tested"],
   },
   {
@@ -75,7 +75,7 @@ const products = [
     purityScore: 94,
     rating: 4.6,
     reviews: 87,
-    image: "https://images.unsplash.com/photo-1583119022894-919a68a3d0e3?w=500&h=500&fit=crop",
+    image: "/images/kashmiri-chilli.jpg",
     tags: ["Low Heat", "Vibrant Color"],
   },
 ]
