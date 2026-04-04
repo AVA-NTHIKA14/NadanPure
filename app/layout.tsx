@@ -1,22 +1,9 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const inter = Inter({ 
-  subsets: ["latin"],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const playfair = Playfair_Display({ 
-  subsets: ["latin"],
-  variable: '--font-playfair',
-  display: 'swap',
-})
-
 export const metadata: Metadata = {
-  title: 'Nadan Pure | Preservative-Free Kerala Organic Produce',
+  title: 'NattilNinnu | Preservative-Free Kerala Organic Produce',
   description: 'From the Soil of God\'s Own Country. Discover authentic, preservative-free organic produce sourced directly from Kerala\'s finest farms.',
   keywords: ['organic', 'kerala', 'preservative-free', 'coconut oil', 'spices', 'natural', 'farm-to-table'],
   generator: 'v0.app',
@@ -51,7 +38,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:wght@400..900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="font-sans antialiased">
         {children}
         <Analytics />

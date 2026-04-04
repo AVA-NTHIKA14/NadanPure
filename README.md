@@ -1,35 +1,51 @@
-# v0-e-commerce-landing-page
+# NattilNinnu
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+Preservative-free Kerala organic produce storefront built with Next.js. Includes a landing page, product grid, and Supabase-powered authentication (login / sign up / profile).
 
-## Built with v0
+## Tech stack
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+- Next.js (App Router) + TypeScript
+- Tailwind CSS + shadcn/ui (Radix UI)
+- Supabase Auth (`@supabase/ssr`, `@supabase/supabase-js`)
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_t68u0iYiCkvOm3xCmuG7gu4yHfFx)
+## Getting started
 
-## Getting Started
-
-First, run the development server:
+1. Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+pnpm install
+# or: npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Create your local env file:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env.local
+```
 
-## Learn More
+3. Fill in `.env.local`:
 
-To learn more, take a look at the following resources:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL` (optional; defaults to your local origin)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+4. Run the dev server:
 
-<a href="https://v0.app/chat/api/kiro/clone/AVA-NTHIKA14/v0-e-commerce-landing-page" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
+```bash
+pnpm dev
+# or: npm run dev
+```
+
+Open `http://localhost:3000`.
+
+## Supabase notes
+
+- Auth pages live under `app/auth/*`.
+- Profile page (`app/profile/page.tsx`) expects a `profiles` table (or an equivalent view/trigger) with fields like `full_name`, `phone`, `address`, `city`, `pincode`, plus an `updated_at` timestamp. Make sure your RLS policies allow the signed-in user to read/update their own row.
+
+## Scripts
+
+- `pnpm dev` / `npm run dev` — start dev server
+- `pnpm build` / `npm run build` — production build
+- `pnpm start` / `npm run start` — start production server
+- `pnpm lint` / `npm run lint` — run ESLint

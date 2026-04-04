@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Nadan Pure Kerala Theme */
+  /*  Kerala Theme */
   /* Off-White: #F9F9F7 | Deep Monsoon Green: #1B3022 | Terracotta: #C67B5C */
   --background: oklch(0.98 0.005 100);
   --foreground: oklch(0.22 0.04 145);

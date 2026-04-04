@@ -7,7 +7,7 @@ import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Leaf, Mail, Lock, ArrowRight, Loader2 } from "lucide-react"
+import { Leaf, Mail, Lock, ArrowRight, Loader2 } from "lucide-react" //logo
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -21,6 +21,12 @@ export default function LoginPage() {
     e.preventDefault()
     setLoading(true)
     setError(null)
+
+    if (!supabase) {
+      setError("Login is temporarily unavailable Please try again.")
+      setLoading(false)
+      return
+    }
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
@@ -47,7 +53,7 @@ export default function LoginPage() {
             <div className="w-10 h-10 bg-background rounded-full flex items-center justify-center">
               <Leaf className="w-5 h-5 text-primary" />
             </div>
-            <span className="text-2xl font-serif text-background">Nadan Pure</span>
+            <span className="text-2xl font-serif text-background">NattilNinnu</span>
           </Link>
           <h1 className="text-4xl xl:text-5xl font-serif text-background leading-tight mb-6">
             Welcome back to<br />

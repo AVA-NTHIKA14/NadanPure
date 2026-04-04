@@ -23,6 +23,12 @@ export default function SignUpPage() {
     setLoading(true)
     setError(null)
 
+    if (!supabase) {
+      setError("Sign up is temporarily unavailable (Supabase is not configured).")
+      setLoading(false)
+      return
+    }
+
     const { error } = await supabase.auth.signUp({
       email,
       password,

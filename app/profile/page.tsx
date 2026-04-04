@@ -37,6 +37,11 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const fetchUserAndProfile = async () => {
+      if (!supabase) {
+        setLoading(false)
+        return
+      }
+
       const { data: { user } } = await supabase.auth.getUser()
       
       if (!user) {
@@ -71,6 +76,12 @@ export default function ProfilePage() {
     e.preventDefault()
     setSaving(true)
     setMessage(null)
+
+    if (!supabase) {
+      setMessage({ type: "error", text: "Profile updates are unavailable (Supabase is not configured)." })
+      setSaving(false)
+      return
+    }
     
     const { error } = await supabase
       .from("profiles")
@@ -112,7 +123,8 @@ export default function ProfilePage() {
                 <Leaf className="h-5 w-5 text-primary-foreground" />
               </div>
               <span className="font-serif text-xl font-bold tracking-tight text-foreground lg:text-2xl">
-                Nadan Pure
+                Nattilninnu
+                
               </span>
             </Link>
             <Button asChild variant="ghost" className="gap-2">
