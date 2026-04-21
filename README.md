@@ -3,8 +3,7 @@
 **Preservative-free Kerala organic produce**  
 Handpicked from local farms · Delivered fresh to your doorstep
 
-[![Live Website](https://img.shields.io/badge/Live%20Website-Visit%20Now-1b4332?style=for-the-badge&logo=vercel&logoColor=white)](https://nadan-pure.vercel.app) 
-
+[Visit NadanPure](https://nadan-pure.vercel.app)
 ---
 
 ## Preview
