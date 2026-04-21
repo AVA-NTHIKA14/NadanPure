@@ -3,7 +3,7 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'NattilNinnu | Preservative-Free Kerala Organic Produce',
+  title: 'NadanPure| Preservative-Free Kerala Organic Produce',
   description: 'From the Soil of God\'s Own Country. Discover authentic, preservative-free organic produce sourced directly from Kerala\'s finest farms.',
   keywords: ['organic', 'kerala', 'preservative-free', 'coconut oil', 'spices', 'natural', 'farm-to-table'],
   generator: 'v0.app',
