@@ -1,6 +1,6 @@
 
 <h1 align="center">NadanPure</h1>
-<img width="1594" height="807" alt="image" src="https://github.com/user-attachments/assets/42f07091-d165-43a7-bf1c-8344bc6b1c2b" />
+
 
 <p align="center">
   <strong>Preservative-free Kerala organic produce</strong><br/>
@@ -21,7 +21,7 @@
 ## Preview
 
 <p align="center">
-  <img src="https://your-screenshot-link-here" width="100%" alt="NadanPure Preview"/>
+  <img src="<img width="1594" height="807" alt="image" src="https://github.com/user-attachments/assets/42f07091-d165-43a7-bf1c-8344bc6b1c2b" />" width="100%" alt="NadanPure Preview"/>
 </p>
 
 ---
