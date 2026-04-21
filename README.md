@@ -1,4 +1,4 @@
-# NattilNinnu
+# NadanPure
 
 Preservative-free Kerala organic produce storefront built with Next.js. Includes a landing page, product grid, and Supabase-powered authentication (login / sign up / profile).
 

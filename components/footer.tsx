@@ -132,7 +132,7 @@ export function Footer() {
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-accent" />
                 <span className="text-sm text-primary-foreground/70">
-                  hello@nadanpure.com
+                  nadanpure@gmail.com
                 </span>
               </li>
             </ul>
@@ -147,7 +147,7 @@ export function Footer() {
           className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-primary-foreground/10 pt-8 sm:flex-row"
         >
           <p className="text-center text-sm text-primary-foreground/60">
-            © 2026 Nadan Pure. All rights reserved. Made with ❤️ in Kerala.
+           © 2026 Nadan Pure. All Rights Reserved | Designed & Developed by Avanthika KS
           </p>
           <div className="flex gap-6 text-sm text-primary-foreground/60">
             <Link href="#" className="hover:text-primary-foreground">
