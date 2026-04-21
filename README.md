@@ -136,13 +136,11 @@ This project is optimized for deployment on Vercel.
 ## Live Application
 
 https://nadan-pure.vercel.app/
-
----
-
-## Designed and Developed by Avanthika KS
-
 ---
 
 ## License
 
 © 2026 Nadan Pure. All rights reserved.
+
+
+## Designed and Developed by Avanthika KS
