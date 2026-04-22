@@ -53,7 +53,7 @@ export default function LoginPage() {
             <div className="w-10 h-10 bg-background rounded-full flex items-center justify-center">
               <Leaf className="w-5 h-5 text-primary" />
             </div>
-            <span className="text-2xl font-serif text-background">NattilNinnu</span>
+            <span className="text-2xl font-serif text-background">NadanPure</span>
           </Link>
           <h1 className="text-4xl xl:text-5xl font-serif text-background leading-tight mb-6">
             Welcome back to<br />
